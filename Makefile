@@ -18,6 +18,7 @@ help:
 	@echo "  make tools-install - Install development tools from .tools/"
 	@echo "  make phpstan       - Run PHPStan static analysis"
 	@echo "  make fix        - Fix code style with PHP-CS-Fixer"
+	@echo "  make test       - Run phpunit tests"
 
 up:
 	$(DC) up -d
