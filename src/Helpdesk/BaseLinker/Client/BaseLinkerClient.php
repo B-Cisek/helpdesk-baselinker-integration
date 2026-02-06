@@ -41,7 +41,7 @@ readonly class BaseLinkerClient implements BaseLinkerClientInterface
             /** @var array<string, mixed> $data */
             $data = $response->toArray();
 
-            if (($data['status'] ?? '') !== 'SUCCESS') {
+            if (isset($data['status']) && $data['status'] !== 'SUCCESS') {
                 throw ApiException::fromResponse($data);
             }
 
