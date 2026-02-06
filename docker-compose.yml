@@ -1,0 +1,22 @@
+services:
+    app:
+        container_name: helpdesk-baselinker-integration
+        build:
+            context: .docker
+            dockerfile: Dockerfile
+            target: development
+            args:
+                USER_ID: ${USER_ID:-1000}
+                GROUP_ID: ${GROUP_ID:-1000}
+        environment:
+            PHP_DATE_TIMEZONE: ${APP_TZ:-Europe/Warsaw}
+        ports:
+            - "80:8080"
+        volumes:
+            - ./:/var/www/html
+        networks:
+            - default
+
+networks:
+    default:
+        driver: bridge
