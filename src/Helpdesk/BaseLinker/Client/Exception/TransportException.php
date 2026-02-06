@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Helpdesk\BaseLinker\Exception;
+namespace App\Helpdesk\BaseLinker\Client\Exception;
 
 final class TransportException extends BaselinkerException
 {

@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Helpdesk\BaseLinker\Client\Decorator;
 
 use App\Helpdesk\BaseLinker\Client\BaseLinkerClientInterface;
-use App\Helpdesk\BaseLinker\Exception\BaselinkerException;
+use App\Helpdesk\BaseLinker\Client\Exception\BaselinkerException;
 use Monolog\Attribute\WithMonologChannel;
 use Psr\Log\LoggerInterface;
 

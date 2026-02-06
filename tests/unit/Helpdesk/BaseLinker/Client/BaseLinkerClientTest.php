@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace App\Tests\unit\Helpdesk\BaseLinker\Client;
 
 use App\Helpdesk\BaseLinker\Client\BaseLinkerClient;
-use App\Helpdesk\BaseLinker\Exception\ApiException;
-use App\Helpdesk\BaseLinker\Exception\RateLimitException;
-use App\Helpdesk\BaseLinker\Exception\TransportException;
+use App\Helpdesk\BaseLinker\Client\Exception\ApiException;
+use App\Helpdesk\BaseLinker\Client\Exception\RateLimitException;
+use App\Helpdesk\BaseLinker\Client\Exception\TransportException;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\HttpClient\MockHttpClient;

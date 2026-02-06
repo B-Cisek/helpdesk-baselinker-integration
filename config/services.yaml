@@ -12,6 +12,10 @@ services:
     App\:
         resource: '../src/'
 
+    _instanceof:
+        App\Helpdesk\BaseLinker\Marketplace\MarketplaceInterface:
+            tags: [ baselinker.marketplace_provider ]
+
     App\Helpdesk\BaseLinker\Client\BaseLinkerClient: ~
 
     App\Helpdesk\BaseLinker\Client\BaseLinkerClientInterface:
@@ -24,3 +28,7 @@ services:
     App\Helpdesk\BaseLinker\Client\Decorator\StopwatchBaseLinkerClient:
         arguments:
             $inner: '@App\Helpdesk\BaseLinker\Client\Decorator\LoggingBaseLinkerClient'
+
+    App\Helpdesk\BaseLinker\Marketplace\MarketplaceProvider:
+        arguments:
+            $strategies: !tagged_iterator baselinker.marketplace_provider

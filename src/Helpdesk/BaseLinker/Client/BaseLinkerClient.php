@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace App\Helpdesk\BaseLinker\Client;
 
-use App\Helpdesk\BaseLinker\Exception\ApiException;
-use App\Helpdesk\BaseLinker\Exception\RateLimitException;
-use App\Helpdesk\BaseLinker\Exception\TransportException;
+use App\Helpdesk\BaseLinker\Client\Exception\ApiException;
+use App\Helpdesk\BaseLinker\Client\Exception\RateLimitException;
+use App\Helpdesk\BaseLinker\Client\Exception\TransportException;
 use Symfony\Component\DependencyInjection\Attribute\Autowire;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
