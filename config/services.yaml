@@ -13,22 +13,22 @@ services:
         resource: '../src/'
 
     _instanceof:
-        App\Helpdesk\BaseLinker\Marketplace\MarketplaceInterface:
+        App\Order\Infrastructure\Marketplace\MarketplaceInterface:
             tags: [ baselinker.marketplace_provider ]
 
-    App\Helpdesk\BaseLinker\Client\BaseLinkerClient: ~
+    App\Order\Infrastructure\BaseLinker\Client\BaseLinkerClient: ~
 
-    App\Helpdesk\BaseLinker\Client\BaseLinkerClientInterface:
-        alias: App\Helpdesk\BaseLinker\Client\Decorator\StopwatchBaseLinkerClient
+    App\Order\Infrastructure\BaseLinker\Client\BaseLinkerClientInterface:
+        alias: App\Order\Infrastructure\BaseLinker\Client\Decorator\StopwatchBaseLinkerClient
 
-    App\Helpdesk\BaseLinker\Client\Decorator\LoggingBaseLinkerClient:
+    App\Order\Infrastructure\BaseLinker\Client\Decorator\LoggingBaseLinkerClient:
         arguments:
-            $inner: '@App\Helpdesk\BaseLinker\Client\BaseLinkerClient'
+            $inner: '@App\Order\Infrastructure\BaseLinker\Client\BaseLinkerClient'
 
-    App\Helpdesk\BaseLinker\Client\Decorator\StopwatchBaseLinkerClient:
+    App\Order\Infrastructure\BaseLinker\Client\Decorator\StopwatchBaseLinkerClient:
         arguments:
-            $inner: '@App\Helpdesk\BaseLinker\Client\Decorator\LoggingBaseLinkerClient'
+            $inner: '@App\Order\Infrastructure\BaseLinker\Client\Decorator\LoggingBaseLinkerClient'
 
-    App\Helpdesk\BaseLinker\Marketplace\MarketplaceProvider:
+    App\Order\Infrastructure\Marketplace\MarketplaceProvider:
         arguments:
             $strategies: !tagged_iterator baselinker.marketplace_provider
