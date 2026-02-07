@@ -26,13 +26,11 @@ final readonly class MarketplaceProvider
      */
     public function get(string $sourceName): MarketplaceInterface
     {
-        foreach ($this->strategyMap as $strategy) {
-            if ($strategy->supports($sourceName)) {
-                return $strategy;
-            }
+        if (!isset($this->strategyMap[$sourceName])) {
+            throw new UnsupportedMarketplaceException($sourceName);
         }
 
-        throw new UnsupportedMarketplaceException($sourceName);
+        return $this->strategyMap[$sourceName];
     }
 
     /** @return list<string> */

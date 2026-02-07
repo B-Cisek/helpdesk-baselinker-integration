@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Order\Data;
 
-readonly class InvoiceAddress
+readonly class InvoiceAddress implements \JsonSerializable
 {
     public function __construct(
         public string $fullName,
@@ -32,5 +32,21 @@ readonly class InvoiceAddress
             countryCode: (string) ($data['invoice_country_code'] ?? ''),
             country: (string) ($data['invoice_country'] ?? ''),
         );
+    }
+
+    /** @return array<string, string> */
+    public function jsonSerialize(): array
+    {
+        return [
+            'invoice_fullname' => $this->fullName,
+            'invoice_company' => $this->company,
+            'invoice_nip' => $this->nip,
+            'invoice_address' => $this->address,
+            'invoice_city' => $this->city,
+            'invoice_state' => $this->state,
+            'invoice_postcode' => $this->postcode,
+            'invoice_country_code' => $this->countryCode,
+            'invoice_country' => $this->country,
+        ];
     }
 }

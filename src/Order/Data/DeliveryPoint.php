@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Order\Data;
 
-readonly class DeliveryPoint
+readonly class DeliveryPoint implements \JsonSerializable
 {
     public function __construct(
         public string $id,
@@ -24,5 +24,17 @@ readonly class DeliveryPoint
             postcode: (string) ($data['delivery_point_postcode'] ?? ''),
             city: (string) ($data['delivery_point_city'] ?? ''),
         );
+    }
+
+    /** @return array<string, string> */
+    public function jsonSerialize(): array
+    {
+        return [
+            'delivery_point_id' => $this->id,
+            'delivery_point_name' => $this->name,
+            'delivery_point_address' => $this->address,
+            'delivery_point_postcode' => $this->postcode,
+            'delivery_point_city' => $this->city,
+        ];
     }
 }

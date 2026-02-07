@@ -11,7 +11,5 @@ interface MarketplaceInterface
 {
     public function getSourceName(): string;
 
-    public function supports(string $sourceName): bool;
-
     public function fetchOrders(GetOrdersFilter $getOrdersFilter = new GetOrdersFilter()): OrderCollection;
 }

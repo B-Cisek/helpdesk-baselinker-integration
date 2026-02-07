@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Order\Data;
 
-readonly class OrderProduct
+readonly class OrderProduct implements \JsonSerializable
 {
     public function __construct(
         public string $storage,
@@ -48,5 +48,29 @@ readonly class OrderProduct
             weight: (float) $data['weight'],
             bundleId: $data['bundle_id'],
         );
+    }
+
+    /** @return array<string, string|int|float> */
+    public function jsonSerialize(): array
+    {
+        return [
+            'storage' => $this->storage,
+            'storage_id' => $this->storageId,
+            'order_product_id' => $this->orderProductId,
+            'product_id' => $this->productId,
+            'variant_id' => $this->variantId,
+            'name' => $this->name,
+            'attributes' => $this->attributes,
+            'sku' => $this->sku,
+            'ean' => $this->ean,
+            'location' => $this->location,
+            'warehouse_id' => $this->warehouseId,
+            'auction_id' => $this->auctionId,
+            'price_brutto' => $this->priceBrutto,
+            'tax_rate' => $this->taxRate,
+            'quantity' => $this->quantity,
+            'weight' => $this->weight,
+            'bundle_id' => $this->bundleId,
+        ];
     }
 }

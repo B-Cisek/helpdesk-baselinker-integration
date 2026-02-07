@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Order\Data;
 
-readonly class Order
+readonly class Order implements \JsonSerializable
 {
     /**
      * @param array<OrderProduct> $products
@@ -87,5 +87,66 @@ readonly class Order
             packState: (int) $data['pack_state'],
             products: array_map(OrderProduct::fromArray(...), $data['products']),
         );
+    }
+
+    /** @return array<string, mixed> */
+    public function jsonSerialize(): array
+    {
+        return [
+            'order_id' => $this->orderId,
+            'shop_order_id' => $this->shopOrderId,
+            'external_order_id' => $this->externalOrderId,
+            'order_source' => $this->orderSource,
+            'order_source_id' => $this->orderSourceId,
+            'order_source_info' => $this->orderSourceInfo,
+            'order_status_id' => $this->orderStatusId,
+            'confirmed' => $this->confirmed,
+            'date_confirmed' => $this->dateConfirmed,
+            'date_add' => $this->dateAdd,
+            'date_in_status' => $this->dateInStatus,
+            'user_login' => $this->userLogin,
+            'phone' => $this->phone,
+            'email' => $this->email,
+            'user_comments' => $this->userComments,
+            'admin_comments' => $this->adminComments,
+            'currency' => $this->currency,
+            'payment_method' => $this->paymentMethod,
+            'payment_method_cod' => $this->paymentMethodCod,
+            'payment_done' => $this->paymentDone,
+            'delivery_method_id' => $this->deliveryMethodId,
+            'delivery_method' => $this->deliveryMethod,
+            'delivery_price' => $this->deliveryPrice,
+            'delivery_package_module' => $this->deliveryPackageModule,
+            'delivery_package_nr' => $this->deliveryPackageNr,
+            'delivery_fullname' => $this->deliveryAddress->fullName,
+            'delivery_company' => $this->deliveryAddress->company,
+            'delivery_address' => $this->deliveryAddress->address,
+            'delivery_city' => $this->deliveryAddress->city,
+            'delivery_state' => $this->deliveryAddress->state,
+            'delivery_postcode' => $this->deliveryAddress->postcode,
+            'delivery_country_code' => $this->deliveryAddress->countryCode,
+            'delivery_country' => $this->deliveryAddress->country,
+            'delivery_point_id' => $this->deliveryPoint->id,
+            'delivery_point_name' => $this->deliveryPoint->name,
+            'delivery_point_address' => $this->deliveryPoint->address,
+            'delivery_point_postcode' => $this->deliveryPoint->postcode,
+            'delivery_point_city' => $this->deliveryPoint->city,
+            'invoice_fullname' => $this->invoiceAddress->fullName,
+            'invoice_company' => $this->invoiceAddress->company,
+            'invoice_nip' => $this->invoiceAddress->nip,
+            'invoice_address' => $this->invoiceAddress->address,
+            'invoice_city' => $this->invoiceAddress->city,
+            'invoice_state' => $this->invoiceAddress->state,
+            'invoice_postcode' => $this->invoiceAddress->postcode,
+            'invoice_country_code' => $this->invoiceAddress->countryCode,
+            'invoice_country' => $this->invoiceAddress->country,
+            'want_invoice' => $this->wantInvoice,
+            'extra_field_1' => $this->extraField1,
+            'extra_field_2' => $this->extraField2,
+            'order_page' => $this->orderPage,
+            'pick_state' => $this->pickState,
+            'pack_state' => $this->packState,
+            'products' => $this->products,
+        ];
     }
 }

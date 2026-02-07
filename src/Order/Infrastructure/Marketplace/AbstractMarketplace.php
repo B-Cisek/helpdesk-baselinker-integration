@@ -18,9 +18,10 @@ abstract readonly class AbstractMarketplace implements MarketplaceInterface
 
     public function fetchOrders(GetOrdersFilter $getOrdersFilter = new GetOrdersFilter()): OrderCollection
     {
-        $getOrdersFilter->filterOrderSource = $this->getSourceName();
+        $filter = clone $getOrdersFilter;
+        $filter->filterOrderSource = $this->getSourceName();
 
-        $response = $this->client->request('getOrders', $getOrdersFilter->toArray());
+        $response = $this->client->request('getOrders', $filter->toArray());
 
         return $this->orderMapper->mapFromResponse($response);
     }

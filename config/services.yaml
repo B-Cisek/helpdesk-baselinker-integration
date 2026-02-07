@@ -16,6 +16,10 @@ services:
         App\Order\Infrastructure\Marketplace\MarketplaceInterface:
             tags: [ baselinker.marketplace_provider ]
 
+        App\Shared\Application\Command\Sync\CommandHandler:
+            tags:
+                - { name: 'messenger.message_handler', bus: command.sync.bus }
+
     App\Order\Infrastructure\BaseLinker\Client\BaseLinkerClient: ~
 
     App\Order\Infrastructure\BaseLinker\Client\BaseLinkerClientInterface:

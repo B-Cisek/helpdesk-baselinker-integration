@@ -12,9 +12,4 @@ readonly class AmazonMarketplace extends AbstractMarketplace
     {
         return self::SOURCE_NAME;
     }
-
-    public function supports(string $sourceName): bool
-    {
-        return $sourceName === self::SOURCE_NAME;
-    }
 }
