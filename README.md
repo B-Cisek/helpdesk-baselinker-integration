@@ -119,3 +119,7 @@ The project uses Symfony Messenger for command handling with support for both sy
 2. **Create async command interfaces** in `src/Shared/Application/Command/Async/` and implementation `src/Shared/Infrastructure/Messenger/AsyncCommandBus`
 3. **Now all commands implementing `App\Shared\Application\Command\Async\Command` are processed asynchronously**
 
+## Improvements can be made
+
+- Pagination Support (BaseLinker API return max 100 orders per request)
+- Order Model Simplification (eg. Add Value Objects)
